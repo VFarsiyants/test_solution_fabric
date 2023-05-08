@@ -1,0 +1,56 @@
+version: '1'
+
+services:
+  post_service:
+    build: .
+    entrypoint: /usr/local/bin/docker-entrypoint.sh
+    depends_on:
+      - db
+    volumes:
+      - ./post_service:/post_service
+      - static_data:/post_service/static
+    expose:
+      - 8000
+    env_file:
+      - docker.env
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=post_service
+  nginx:
+    image: nginx:1.19.8-alpine
+    depends_on:
+      - post_service
+    ports:
+      - "80:80"
+    volumes:
+      - static_data:/var/www/html/static
+      - ./nginx-conf.d:/etc/nginx/conf.d
+  redis:
+    restart: unless-stopped
+    image: redis:latest
+    expose:
+      - 6379
+  celery:
+    restart: unless-stopped
+    build: .
+    command: celery -A post_service worker --loglevel=info
+    depends_on:
+        - redis
+        - post_service
+    volumes:
+      - ./post_service:/post_service
+    env_file:
+      - docker.env
+    environment:
+      - DEBUG=0
+volumes:
+  pg_data:
+  static_data:
