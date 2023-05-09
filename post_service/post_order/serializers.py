@@ -13,16 +13,20 @@ class ClientSerializer(serializers.ModelSerializer):
 class PostOrderSerializer(serializers.ModelSerializer):
 
     messages_sent = serializers.IntegerField(
-        label='Число отправленных сообщений')
+        label='Число отправленных сообщений', 
+        required=False)
     
     messages_error = serializers.IntegerField(
-        label='Число отправленных сообщений отправленных с ошибкой')
+        label='Число отправленных сообщений отправленных с ошибкой', 
+        required=False)
     
     messages_processing = serializers.IntegerField(
-        label='Число обрабатываемых сообщений')
+        label='Число обрабатываемых сообщений',
+        required=False)
     
     messages_expired = serializers.IntegerField(
-        label='Число просроченных сообщений')
+        label='Число просроченных сообщений',
+        required=False)
 
     class Meta:
         model = PostOrder

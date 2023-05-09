@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<a href="{% url 'logout' %}" class="btn btn--link">Выйти</a>
+<main class="grid-container">
+  <h3>ID Рассылки</h3>
+  <h3>Значение фильтра</h3>
+  <h3>Сообщения</h3>
+  <h3>Начало рассылки</h3>
+  <h3>Завершение рассылки</h3>
+  <h3>Доставлено сообщений</h3>
+  <h3>Ошибки при отправке</h3>
+  <h3>Обработка  сообщений</h3>
+  <h3>Просрочено сообщений</h3>
+  {% for order in orders %}
+  <p>{{ order.id }}</p>
+  <p>{{ order.filter_property }}</p>
+  <p>{{ order.message_text }}</p>
+  <p>{{ order.start_time }}</p>
+  <p>{{ order.end_time }}</p>
+  <p>{{ order.messages_sent }}</p>
+  <p>{{ order.messages_error }}</p>
+  <p>{{ order.messages_processing }}</p>
+  <p>{{ order.messages_expired }}</p>
+  {% endfor %}
+</main>
+{% endblock content %}

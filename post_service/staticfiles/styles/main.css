@@ -1,0 +1,90 @@
+* {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+  overflow-y: scroll;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+  
+.form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form__group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form__group input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.form__group input:focus {
+  outline: none;
+  border-bottom-color: #006aff;
+}
+
+.btn { 
+  display: inline-block; 
+  border: none; 
+  border-radius: 3px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  color: #fff; 
+  cursor: pointer; 
+}
+
+.btn--main, .btn--form { 
+  background-color: #006aff; 
+}
+
+.btn--main:hover, .btn--form:hover { 
+  background-color: #0048ff; 
+}
+
+.btn--link { 
+  color: #006aff; 
+  text-decoration: none;
+}
+
+.btn--link:hover { 
+  color: #0048ff; 
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 5px;
+  width: 100%;
+  background-color: #FFF;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
